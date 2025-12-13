@@ -31,3 +31,27 @@
 > please add a script to the makefile to compress all generated pngs to reduce size in git
 
 ? To improve this prompt, be more specific about the compression tools and targets: "Create a Makefile target 'optimize-pngs' that uses pngquant and optipng to compress PNG files recursively. Include options for quality settings (default 65-80), dry-run mode, and specific directory targeting. Add a helper script in scripts/ directory with proper error handling and progress reporting. Document the installation requirements for both macOS and Linux." This provides clear technical requirements and expected functionality.
+
+> as a new project please design an advent calendar with doors that can be opened and closed. the door sizes shall not be the same, and shall be in random order from 1-24. the enclosing box shall be a huge rectange, i do not need you to design the insert for now. the doors shall snap into the box without an additional metal object, but make it openable.  make sure to bewel the numbers in the doors, make a thin layer under it so it is not seethrough. please make sure to create the preview as well with the wireframe without the materials. if the preview generation does not work that way please make it so. do not forget to add the prompt audit and suggestion.
+
+? To improve this prompt, break it into clearer specifications: "Create an advent calendar project in projects/advent_calendar/ with: 1) A rectangular box (400x300x60mm) with 24 door openings arranged in a 6x5 grid, 2) Doors in 3 random sizes (small 1x1, medium 1x2/2x1, large 2x2 cells) numbered 1-24, 3) Snap-fit hinge mechanism (3mm diameter pin with 0.2mm clearance), 4) Beveled numbers (1.5mm deep) with 0.8mm backing layer to prevent see-through, 5) Export script for box and all 24 doors, 6) Generate preview images including wireframe view. Specify OpenSCAD linear_extrude for beveled text and include assembly view with doors open." This provides precise measurements, technical details, and clear deliverables.
+
+> the doors are vertical the box is horizontal. please fix it. make it look like an advent calendar. I do not see the numbers on the doors
+
+? To improve this prompt, be more specific about the expected orientation and visibility issues: "The box should be oriented vertically (tall, like a traditional wall-mounted advent calendar), not horizontally. Change box_height to be larger than box_width. The door numbers should be embossed (raised) on the surface, not recessed, so they are clearly visible. Update the coordinate system to use the Z-axis for the vertical dimension." This provides concrete technical guidance on what needs to be fixed.
+
+> please instead of bewelled numbers attach it to the doors different color
+
+? To improve this prompt, clarify the desired visual effect: "Replace the beveled number design with flat numbers that are embossed (raised) on the door surface. Use a different color for the numbers (e.g., 'Gold') to contrast with the door color (e.g., 'Chocolate'). Remove the bevel effect created by the offset() function and use simple text() with linear_extrude()." This makes it clear that you want simpler geometry with color differentiation rather than beveled depth effects.
+
+> it looks ugly. please make the doors rectangular, align in a grid. just make the door numbers randomized by a seed
+
+? To improve this prompt, be more specific about the design requirements: "Simplify the advent calendar to use a uniform 6x4 grid where all doors are the same rectangular size. Remove the variable door sizes (small/medium/large). Keep the snap-fit hinges and embossed numbers, but only randomize the number assignments (1-24) across the grid positions using the seed parameter for repeatability. Update door_configs array to a simple randomization function." This provides clear technical direction on what to keep vs. what to simplify.
+
+> please keep a padding between the doors, please cut the places of the doors from the box
+
+? To improve this prompt, specify the desired padding amount and clarify what's needed: "Increase door_clearance from 0.3mm to 2mm to create visible gaps/padding between doors. Verify that door openings are properly cut from the box using difference() operations in the calendar_box() module. The padding should be visible in the rendered output and create clear separation between adjacent doors." This makes the requirements measurable and verifiable.
+
+> please make sure the box dimensions are bigger than what the doors take up with the paddings. make sure that the doors are aligned by the Y axis as if they are taken outside from it. make sure to cut the places of the doors from the box where they will fit. make sure there is a hole for the hinge as well that is on the doors
+
+? To improve this prompt, break it into specific technical requirements: "1) Calculate required box dimensions: 6 doors × cell_width + 2×wall_thickness for width, 4 doors × cell_height + 2×wall_thickness for height. Increase box_width to 410mm and box_height to 510mm. 2) Position doors using translate([x, z+h, wall_thickness]) rotate([90, 0, 0]) so they align with openings and extend outward from the box front face. 3) Verify door openings are cut using cube([w, wall_thickness+2, h]) in difference() block. 4) Position door hinges at local z=0 (becomes top after rotation), and cut hinge slots in box at translate([x+w/2, wall_thickness/2, z+h]) with cylinder for clearance." This provides specific dimensions, positioning formulas, and technical implementation details.
