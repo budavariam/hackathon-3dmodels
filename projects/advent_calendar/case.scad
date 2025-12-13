@@ -207,9 +207,10 @@ module calendar_door(day, width, height) {
         cube([catch_size, catch_size, catch_size]);
 
     // EMBOSSED number on door front (raised/positive) - different color
-    translate([width/2, door_thickness, height/2])
-        rotate([90, 0, 0])
-            color("Gold")
+    // Numbers oriented vertically (aligned with Z axis)
+    translate([width/2, 0, height/2])
+        color("Gold")
+            rotate([90, 0, 0])
                 linear_extrude(height=number_depth)
                     flat_number(day);
 }

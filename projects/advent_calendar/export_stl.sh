@@ -1,5 +1,6 @@
 #!/bin/bash
 # Export Advent Calendar STL files
+export FONTCONFIG_PATH=$(brew --prefix)/etc/fonts/
 
 SCAD_FILE="case.scad"
 OUTPUT_DIR="./output"

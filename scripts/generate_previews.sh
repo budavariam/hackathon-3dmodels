@@ -7,7 +7,7 @@ set -e  # Exit on error
 # Default values
 SCAD_FILE=""
 OUTPUT_DIR="./previews"
-SIZE="1024,768"
+SIZE="1920,1080"
 COLORSCHEME="Tomorrow"
 CAMERA_DISTANCE=200
 RENDER_PART=""
@@ -167,14 +167,14 @@ openscad -o "$OUTPUT_DIR/${BASENAME}_left.png" \
          $PART_OPT \
          "$SCAD_FILE" 2>/dev/null
 
-# 5. Wireframe view (using view settings)
+# 5. Wireframe view (edges only, no surfaces - like F11 Thrown Together mode)
 echo "[5/6] Generating wireframe view..."
 openscad -o "$OUTPUT_DIR/${BASENAME}_wireframe.png" \
          --imgsize=$SIZE \
          --colorscheme=Monotone \
          --autocenter \
          --viewall \
-         --view=axes,scales,edges \
+         --preview=throwntogether \
          $PART_OPT \
          "$SCAD_FILE" 2>/dev/null
 

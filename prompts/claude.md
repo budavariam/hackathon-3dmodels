@@ -55,3 +55,23 @@
 > please make sure the box dimensions are bigger than what the doors take up with the paddings. make sure that the doors are aligned by the Y axis as if they are taken outside from it. make sure to cut the places of the doors from the box where they will fit. make sure there is a hole for the hinge as well that is on the doors
 
 ? To improve this prompt, break it into specific technical requirements: "1) Calculate required box dimensions: 6 doors × cell_width + 2×wall_thickness for width, 4 doors × cell_height + 2×wall_thickness for height. Increase box_width to 410mm and box_height to 510mm. 2) Position doors using translate([x, z+h, wall_thickness]) rotate([90, 0, 0]) so they align with openings and extend outward from the box front face. 3) Verify door openings are cut using cube([w, wall_thickness+2, h]) in difference() block. 4) Position door hinges at local z=0 (becomes top after rotation), and cut hinge slots in box at translate([x+w/2, wall_thickness/2, z+h]) with cylinder for clearance." This provides specific dimensions, positioning formulas, and technical implementation details.
+
+> now the doors are properly aligned at the Y axis, but I meant to align by the Z axis. please get it fixed. make sure to keep a small distance from the box do not overlap
+
+? To improve this prompt, clarify the coordinate system and desired orientation: "The doors should be aligned along the Z axis (vertical), not Y axis. Remove the rotate([90, 0, 0]) transformation and position doors directly with translate([x, -(door_thickness + 1), z]) where: x is the horizontal position matching the opening, z is the vertical position matching the opening, and the negative Y positions the door in front of the box with 1mm clearance. Update the door module so hinges are at local Z=height (top of door) not Z=0 (bottom)." This provides clear coordinate specifications and explains the relationship between door local coordinates and world coordinates.
+
+> continue. how can I make the image generation not add the material, just the wireframe as if I presed F11 in openscad? update my script please
+
+? To improve this prompt, be more specific about the technical requirements: "Update scripts/generate_previews.sh to generate wireframe-only images (like OpenSCAD's F11 'Thrown Together' mode). Replace the wireframe view generation to use --preview=throwntogether flag instead of --view=axes,scales,edges. This will show only edges without rendering surfaces, making it a true wireframe view." This provides the exact OpenSCAD flag needed and specifies which file and section to modify.
+
+> the numbers are not visible on the doors. please add them with a different color than the doors
+
+? To improve this prompt, specify the issue more clearly: "The door numbers (which should be in Gold color) are not visible on the rendered doors. Verify the number positioning and orientation: numbers should be positioned at the front face of each door (Y=0 in local coordinates) and extrude outward in the +Z direction using linear_extrude(height=number_depth). Remove any rotation that might be pointing the numbers the wrong way. Ensure the Gold color is applied correctly." This helps diagnose whether it's a positioning issue, orientation issue, or color issue.
+
+> please make the numbers outside. now it is on the wrong side
+
+? To improve this prompt, clarify which surface should show the numbers: "The numbers should be visible on the outside (front) surface of the doors when viewed from in front of the calendar. Currently the numbers may be on the back side or pointing inward. Position numbers at Y=0 in door local coordinates (the back face which becomes the front after door positioning) and extrude in the +Y direction (outward). Remove the rotate([90, 0, 0]) from the number rendering and use a simple translate([width/2, 0, height/2]) + linear_extrude(height=number_depth) approach." This provides the exact transformation needed.
+
+> the numbers are aligned still to the y axis not Z axis
+
+? To improve this prompt, clarify the desired text orientation: "The door numbers should be oriented vertically (text aligned with the Z axis, reading upright). Currently the text is horizontal. Apply rotate([90, 0, 0]) after positioning but before or as part of the linear_extrude operation: translate([width/2, 0, height/2]) rotate([90, 0, 0]) linear_extrude(height=number_depth) flat_number(day). This rotates the text from the XY plane to the XZ plane so it reads vertically." This specifies the exact orientation transform needed.
