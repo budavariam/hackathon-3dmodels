@@ -40,3 +40,5 @@ fp-info-cache
 *.kicad_prl
 
 output/
+# RevealJS generated files
+presentation/_site/
