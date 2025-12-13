@@ -90,8 +90,10 @@ if (render_part == "all") {
         x_pos = col * (w + spacing);
         y_pos = row * (h + spacing);
 
+        // Rotate door to lie flat on print bed with numbers facing up
         translate([x_pos, y_pos, 0])
-            calendar_door(day, w, h);
+            rotate([-90, 0, 0])
+                calendar_door(day, w, h);
     }
 } else {
     // Render individual door
