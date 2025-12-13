@@ -337,3 +337,48 @@ Break this into clearer requirements: "1) In generate_previews.sh, add automatic
 </details>
 
 ---
+
+> please use the same names in the presentation. do not rename the files make it simple and dynamic
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Be more specific about the file copying approach: "In generate_previews.sh, instead of renaming files during copy (case_all_perspective.png → case_perspective.png), use a dynamic approach that copies files with their original names. Use a bash loop with pattern matching: `for img in "$OUTPUT_DIR"/case_all_*.png; do [ -f "$img" ] && cp "$img" "$PRESENTATION_DIR/"; done`. Update presentation.md to reference files with their original names (case_all_perspective.png, case_all_front.png, etc.). This keeps the script simple and maintainable." This provides the exact bash pattern and explains the simplification benefit.
+
+</details>
+
+---
+
+> I do not need the individual door stls
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Specify which part of the script to remove: "In export_stl.sh (lines 55-57), remove the for loop that copies individual door STL files (door_1.stl, door_7.stl, door_18.stl, door_24.stl) to the output folder. Only keep the copying of advent_box.stl and all_doors.stl since those are the only files needed for printing. The individual door samples are still generated locally in the output/ directory but don't need to be distributed." This clarifies exactly what to remove and what to keep.
+
+</details>
+
+---
+
+> instead of output_stl/advent_calendar/advent_box.stl it shall be updated in projects/advent_calendar/output_stl/advent_box.stl
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Specify the directory change clearly: "In export_stl.sh, change the STL output destination from the root-level path '../../output_stl/advent_calendar/' to the project-local path './output_stl/'. This keeps exported STL files within the advent calendar project directory (projects/advent_calendar/output_stl/) instead of a centralized root folder. Update the ROOT_OUTPUT_DIR variable to PROJECT_OUTPUT_DIR='./output_stl' and adjust the echo messages accordingly." This provides the exact variable name change and path structure.
+
+</details>
+
+---
+
+> the advent box orientation do not fit for printing please fix that as well. do not forget to add the prompts for audit
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Be more specific about the orientation issue: "The advent box STL export (render_part='box') is currently standing upright, which is not optimal for 3D printing. Rotate the box to lie flat on the print bed by adding `translate([0, box_depth, 0]) rotate([90, 0, 0])` to the 'box' render mode in case.scad (around line 76). This rotates the box around the X-axis so the back face is down on the print bed, minimizing support structures and improving print stability. Also add the recent prompts to prompts/claude.md following the established collapsible format." This provides technical details (rotation axis, translation compensation) and includes the audit reminder explicitly.
+
+</details>
+
+---
+

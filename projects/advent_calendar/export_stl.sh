@@ -45,13 +45,13 @@ echo "  - Doors: 0.15mm layer height, 100% infill for strength, no supports need
 echo "  - Hinge clearance: 0.2mm (adjust if too tight/loose)"
 echo ""
 
-# Update root output folder with latest STL files
-ROOT_OUTPUT_DIR="../../output_stl/advent_calendar"
-echo "==> Updating root output folder..."
-mkdir -p "$ROOT_OUTPUT_DIR"
+# Update project output_stl folder with latest STL files
+PROJECT_OUTPUT_DIR="./output_stl"
+echo "==> Updating project output_stl folder..."
+mkdir -p "$PROJECT_OUTPUT_DIR"
 
-cp "$OUTPUT_DIR/advent_box.stl" "$ROOT_OUTPUT_DIR/"
-cp "$OUTPUT_DIR/all_doors.stl" "$ROOT_OUTPUT_DIR/"
+cp "$OUTPUT_DIR/advent_box.stl" "$PROJECT_OUTPUT_DIR/"
+cp "$OUTPUT_DIR/all_doors.stl" "$PROJECT_OUTPUT_DIR/"
 
-echo "✓ STL files copied to: $ROOT_OUTPUT_DIR/"
+echo "✓ STL files copied to: $PROJECT_OUTPUT_DIR/"
 echo ""

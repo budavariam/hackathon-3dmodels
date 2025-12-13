@@ -73,7 +73,10 @@ if (render_part == "all") {
         }
     }
 } else if (render_part == "box") {
-    calendar_box();
+    // Rotate box to lie flat on print bed (back facing down)
+    translate([0, 0, box_depth])
+        rotate([-90, 0, 0])
+            calendar_box();
 } else if (render_part == "all_doors") {
     // All doors laid flat for printing
     w = cell_width - 2*door_clearance;
