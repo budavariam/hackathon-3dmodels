@@ -129,7 +129,26 @@ make optimize-pngs
 
 **24-door calendar with snap-fit hinges and randomized numbers**
 
-![Advent Calendar](./presentation/images/case_front.png)
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0;">
+<div>
+
+**Complete Calendar**
+![Complete Calendar](./projects/advent_calendar/previews/case_all_perspective.png)
+
+</div>
+<div>
+
+**Box Only**
+![Box Only](./projects/advent_calendar/previews/case_box_perspective.png)
+
+</div>
+<div>
+
+**All Doors (Print Layout)**
+![All Doors](./projects/advent_calendar/previews/case_all_doors_perspective.png)
+
+</div>
+</div>
 
 ### Features
 
