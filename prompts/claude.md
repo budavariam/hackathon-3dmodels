@@ -282,3 +282,36 @@ Specify the exact issue and solution: "The numbers in the 'all_doors' print layo
 </details>
 
 ---
+
+> please make the prompts/claude.md file more readable. e.g add a hr after each ? section. also '?' is not a valid github markdown section. please use a better one like collapsible box or info box if there is such a thing. also update CLAUDE.md file in the root to use this new format
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Be more specific about the desired format: "Convert prompts/claude.md to use HTML collapsible sections and horizontal rules for better readability. Replace all '?' lines with `<details><summary>💡 How to improve this prompt</summary>[content]</details>` blocks. Add `---` horizontal rules after each entry for visual separation. Update the Audit Protocol section in CLAUDE.md (around line 237) to document this new format with examples. The collapsible sections work in GitHub markdown and make the file much easier to scan." This provides exact syntax, file locations, and explains the benefits of the change.
+
+</details>
+
+---
+
+> please use the same colors for case_all than for case_box. namely I like blue and gold instead of plain brown. bad: projects/advent_calendar/previews/case_all_perspective.png good: projects/advent_calendar/previews/case_door_18_perspective.png
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Specify the exact color change needed with technical details: "In case.scad, change the colors in the 'all' render mode (lines 56 and 72) from 'SaddleBrown' and 'Chocolate' to 'CornflowerBlue' to match the individual door renders. However, applying color() wrapper on calendar_door() call overrides internal Gold color for numbers. Instead, apply color('CornflowerBlue') directly to each component (cube, cylinder, snap catch) inside the calendar_door() module (lines 197-209) while keeping color('Gold') on the number text. This ensures both colors display correctly." This provides the exact issue (color precedence) and the correct solution (apply colors per component).
+
+</details>
+
+---
+
+> perfect now please make sure that the images in the presentation are up to date from this preview list
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Be more specific about which images and where: "Copy the latest preview images from projects/advent_calendar/previews/ to presentation/images/ directory. Specifically copy case_all_perspective.png, case_all_front.png, case_all_top.png, case_all_left.png, and case_all_wireframe.png, renaming them to remove the 'all_' prefix to match the presentation's existing image references. Create the presentation/images/ directory if it doesn't exist. This ensures the presentation displays the updated blue and gold color scheme." This provides exact source and destination paths, file names, and explains the renaming requirement.
+
+</details>
+
+---
