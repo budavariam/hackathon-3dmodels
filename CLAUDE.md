@@ -89,6 +89,54 @@ bash scripts/generate_previews.sh -p "lid" projects/box_with_lid/case.scad
 bash scripts/generate_previews.sh -s 1920x1080 -o ./images model.scad
 ```
 
+### Optimizing PNG Files for Git
+
+Compress PNG preview images to reduce repository size:
+
+```bash
+make optimize-pngs                    # Optimize all PNGs recursively
+make optimize-pngs DIR=projects       # Optimize specific directory
+make optimize-pngs DRY=1              # Dry run (preview changes)
+```
+
+**Direct script usage:**
+```bash
+bash scripts/optimize_pngs.sh -r -q 65-80 .
+```
+
+**Options:**
+- `-r, --recursive` - Search recursively
+- `-q, --quality RANGE` - Quality range (default: 65-80)
+- `-s, --speed LEVEL` - Speed 1-11 (default: 3)
+- `-d, --dry-run` - Preview without modifying
+
+**Requirements:**
+```bash
+# macOS
+brew install pngquant optipng
+
+# Linux
+apt-get install pngquant optipng
+
+# Or use Makefile
+make install-deps
+```
+
+Typical compression: 50-70% size reduction with minimal visual quality loss.
+
+### Makefile Commands
+
+The project includes a Makefile for common tasks:
+
+```bash
+make help           # Show available commands
+make optimize-pngs  # Compress all PNG files
+make render-all     # Generate STL files for all projects
+make test-previews  # Generate previews for all projects
+make clean          # Remove generated files
+make install-deps   # Install required dependencies
+```
+
 ### Manual OpenSCAD Commands
 
 Export STL manually:

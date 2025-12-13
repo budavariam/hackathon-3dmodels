@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(bash /Users/budavariam/project/personal/hackathon-3dmodels/scripts/generate_previews.sh:*)"
+      "Bash(bash /Users/budavariam/project/personal/hackathon-3dmodels/scripts/generate_previews.sh:*)",
+      "Bash(make optimize-pngs:*)"
     ],
     "deny": [],
     "ask": []

@@ -27,3 +27,7 @@
 > please add the missing prompts to prompts/claude.md file with the required additional info
 
 ? To improve this prompt, be more specific: "Audit all user prompts from this conversation session and add them to prompts/claude.md following the established format (> for prompts, ? for improvement suggestions, blank lines after each). Include prompts about CHEATSHEET cleanup, repository restructuring, and preview generation." This clarifies exactly which prompts should be added and in what format.
+
+> please add a script to the makefile to compress all generated pngs to reduce size in git
+
+? To improve this prompt, be more specific about the compression tools and targets: "Create a Makefile target 'optimize-pngs' that uses pngquant and optipng to compress PNG files recursively. Include options for quality settings (default 65-80), dry-run mode, and specific directory targeting. Add a helper script in scripts/ directory with proper error handling and progress reporting. Document the installation requirements for both macOS and Linux." This provides clear technical requirements and expected functionality.

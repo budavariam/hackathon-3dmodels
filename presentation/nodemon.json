@@ -1,0 +1,8 @@
+{
+    "execMap": {
+      "md": "revealjs-cli --serve --port 80 --location ./dist --open"
+    },
+    "ext": "md",
+    "watch": ["."],
+    "verbose": true
+  }

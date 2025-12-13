@@ -1,0 +1,9 @@
+services:
+  presentation:
+    build:
+      context: ./presentation
+      dockerfile: Dockerfile.dev
+    ports:
+      - "127.0.0.1:4411:80"
+    volumes:
+      - ./presentation:/app/

@@ -1,0 +1,207 @@
+.reveal {
+  font-size: 25px !important;
+}
+
+.reveal section img {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.reveal code:not(.hljs) {
+  color: #940303;
+}
+
+.reveal table.smallfonttable {
+  font-size: small;
+  margin: 0;
+  width: 100%;
+}
+
+.reveal table.mediumfonttable {
+  font-size:medium;
+  margin: 0;
+  width: 100%;
+}
+.reveal table.largefonttable {
+  font-size:large;
+  margin: 0;
+  width: 100%;
+}
+
+.reveal .chapter-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reveal .chapter-table th {
+  display: none;
+}
+
+.reveal .chapter-table td {
+  border: none;
+  padding: 10px;
+  text-align: center;
+}
+.reveal .chapter-table .align-right {
+  text-align: right;
+}
+.reveal .chapter-table .align-left {
+  text-align: left;
+}
+
+.reveal .chapter {
+  text-decoration: underline;
+}
+
+.reveal .slides > section:first-child {
+  /* Align title to center */
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reveal a.examples,
+.reveal .examples a {
+  /* display: none; */
+  color: #7b00ff;
+}
+.examples::after {
+  content: "\2934";
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  cursor: pointer;
+  position: absolute;
+  z-index: 10000;
+  top: 0;
+  opacity: 0.99;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+}
+
+.modal pre {
+  margin: 0;
+  white-space: pre-wrap;
+  padding: 5px;
+
+  font-size: xx-large;
+}
+
+.modal-bottom {
+  font-family: monospace;
+  position: fixed;
+  font-size: small;
+  bottom: 0;
+}
+
+.modal-top {
+  font-family: monospace;
+  position: fixed;
+  font-size: small;
+  top: 0;
+}
+
+/* Monokai override */
+.hljs-string {
+  color: #e58052;
+}
+
+/* Monokai override */
+.hljs-variable {
+  color: #7dd2fc;
+}
+
+#logo {
+  /* Only in white theme */
+  filter: invert(1);
+}
+
+@media print {
+  #logo,
+  #title-footer,
+  #toggle-chalkboard,
+  #toggle-notes,
+  .slide-menu-button,
+  .controls,
+  a[href^="#"] {
+    display: none;
+  }
+  a::after {
+    font-size: small;
+    text-decoration: none;
+    content: " (" attr(href) ")";
+  }
+}
+
+.size-sm {
+  height: 3em;
+}
+
+.reveal table.table-as-list td,
+.reveal table.table-as-list th {
+  border-bottom: none;
+}
+
+.reveal table.table-as-list td:first-child {
+  display: list-item;
+}
+
+.reveal .slide-number a {
+  font-size: 2em;
+}
+
+.reveal section img.starbadge {
+  margin: 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128,128,128,0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.modal-overlay.close {
+  cursor: pointer;
+}
+
+.reveal .source {
+  font-size: smaller;
+}
+
+.reveal .source::before {
+  content: "See more: ";
+}
+
+.font-xsmall {
+  font-size: x-small;
+}
+
+.reveal img.image-icon {
+  height: 1em;
+  margin: 0 1em;
+}

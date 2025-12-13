@@ -1,0 +1,19 @@
+FROM node:20-alpine as base
+
+WORKDIR /app
+RUN npm install -g revealjs-cli nodemon
+COPY . .
+# CMD ["nodemon", "--watch", "./*.md", "revealjs-cli", "--serve", "--port", "80", "--location", "./dist", "--open", "./index.md"]
+# Make sure to have nodemon.json with the content for example:
+# {
+#     "execMap": {
+#       "md": "revealjs-cli --serve --port 8099 --location ./dist --open"
+#     },
+#     "ext": "md",
+#     "watch": ["."],
+#     "verbose": true
+#   }
+
+CMD ["nodemon", "./presentation.md"]
+
+EXPOSE 80
