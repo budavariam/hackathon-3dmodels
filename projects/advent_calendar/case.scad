@@ -77,23 +77,21 @@ if (render_part == "all") {
     calendar_box();
 } else if (render_part == "all_doors") {
     // All doors laid flat for printing
-    x_offset = 0;
-    y_offset = 0;
     w = cell_width - 2*door_clearance;
     h = cell_height - 2*door_clearance;
+    spacing = 5;
+    doors_per_row = 4;  // 4 doors per row = 6 rows for 24 doors
 
     for (i = [0:23]) {
         day = door_numbers[i];
+        row = floor(i / doors_per_row);
+        col = i % doors_per_row;
 
-        translate([x_offset, y_offset, 0])
+        x_pos = col * (w + spacing);
+        y_pos = row * (h + spacing);
+
+        translate([x_pos, y_pos, 0])
             calendar_door(day, w, h);
-
-        // Arrange in rows
-        x_offset = x_offset + w + 5;
-        if (x_offset > 350) {
-            x_offset = 0;
-            y_offset = y_offset + h + 5;
-        }
     }
 } else {
     // Render individual door

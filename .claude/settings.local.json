@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(timeout 120 openscad:*)",
+      "Bash(timeout 300 openscad:*)",
+      "Bash(bash export_stl.sh:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -11,6 +11,59 @@
 - **Snap-fit hinges**: 3mm diameter pins with 0.2mm clearance
 - **Numbers**: Flat embossed 1.5mm with gold color (not beveled)
 
+## Getting Started
+
+### Prerequisites
+
+- OpenSCAD installed (version 2021.01 or later)
+- Command line access (Terminal on macOS/Linux)
+
+### Generate STL Files
+
+Navigate to the project directory and run the export script:
+
+```bash
+cd projects/advent_calendar
+bash export_stl.sh
+```
+
+This generates:
+- `output/advent_box.stl` - Main calendar box (~12 seconds)
+- `output/all_doors.stl` - All 24 doors for batch printing (~53 seconds)
+- `output/door_1.stl`, `door_7.stl`, `door_18.stl`, `door_24.stl` - Sample individual doors
+
+**Total export time:** ~1-2 minutes
+
+### Generate Preview Images
+
+From the project directory, run:
+
+```bash
+# Generate all standard views (perspective, top, front, left, wireframe, blueprint)
+bash ../../scripts/generate_previews.sh case.scad
+
+# Generate previews for specific parts
+bash ../../scripts/generate_previews.sh -p "box" case.scad
+bash ../../scripts/generate_previews.sh -p "all_doors" case.scad
+bash ../../scripts/generate_previews.sh -p "door_1" case.scad
+
+# Custom size and output directory
+bash ../../scripts/generate_previews.sh -s 1920x1080 -o ./images case.scad
+```
+
+Preview images are saved to `previews/` directory by default.
+
+### Verify Build Success
+
+After running the export script, verify:
+
+1. Check that all STL files exist in `output/` directory
+2. No OpenSCAD errors in terminal output
+3. File sizes look reasonable:
+   - `advent_box.stl` ~535KB
+   - `all_doors.stl` ~1.7MB
+   - Individual doors ~20-100KB each
+
 ## Printing Recommendations
 
 **Box:**
