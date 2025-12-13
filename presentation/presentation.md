@@ -269,13 +269,13 @@ rotate([90, 0, 0])
 - ✅ 2mm visible padding between doors
 - ✅ Randomized number positions (seed-based)
 
-![Final Calendar](./images/case_perspective.png) {.stretch}
+![Final Calendar](./images/advent_calendar/case_all_perspective.png) {.stretch}
 
 ---
 
 ## Final Result: Multiple Views
 
-<style> .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; height: 60vh; align-items: center; justify-items: center; } .grid-item { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; } .grid-item h4 { margin: 0 0 1rem 0; font-size: 1.3em; } .grid-item img { max-height: 25vh; max-width: 90%; object-fit: contain; } </style> <div class="grid-container"> <div class="grid-item"> <h4>Front View</h4> <img src="./images/case_front.png" alt="Front View"> </div> <div class="grid-item"> <h4>Top View</h4> <img src="./images/case_top.png" alt="Top View"> </div> <div class="grid-item"> <h4>Wireframe</h4> <img src="./images/case_wireframe.png" alt="Wireframe"> </div> <div class="grid-item"> <h4>Left View</h4> <img src="./images/case_left.png" alt="Left View"> </div> </div>
+<style> .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; height: 60vh; align-items: center; justify-items: center; } .grid-item { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; } .grid-item h4 { margin: 0 0 1rem 0; font-size: 1.3em; } .grid-item img { max-height: 25vh; max-width: 90%; object-fit: contain; } </style> <div class="grid-container"> <div class="grid-item"> <h4>Front View</h4> <img src="./images/advent_calendar/case_all_front.png" alt="Front View"> </div> <div class="grid-item"> <h4>Top View</h4> <img src="./images/advent_calendar/case_all_top.png" alt="Top View"> </div> <div class="grid-item"> <h4>Wireframe</h4> <img src="./images/advent_calendar/case_all_wireframe.png" alt="Wireframe"> </div> <div class="grid-item"> <h4>Left View</h4> <img src="./images/advent_calendar/case_all_left.png" alt="Left View"> </div> </div>
 
 ---
 

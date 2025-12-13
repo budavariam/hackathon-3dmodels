@@ -315,3 +315,25 @@ Be more specific about which images and where: "Copy the latest preview images f
 </details>
 
 ---
+
+> the sample individual door exports still stand aligned to the wrong axis
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Be more specific about which exports and what's wrong: "The individual door exports (render_part='door_N') in case.scad are still standing upright (vertical Z orientation) instead of lying flat for printing. Apply the same rotation fix used for the 'all_doors' mode: in the else block (lines ~97-109), add rotate([-90, 0, 0]) transformation with translate([0, h, 0]) before the calendar_door() call. This ensures individual door STL files match the print-ready orientation of the batch export." This specifies exact file section, rotation values, and explains the consistency requirement.
+
+</details>
+
+---
+
+> please add a script that updates the /Users/budavariam/project/personal/hackathon-3dmodels/projects/advent_calendar/output_stl and presentation/images folder contents with the latest content so that they are up to date with the generated. prefarbly add this to the generator script not to run another code to have it updated
+
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Break this into clearer requirements: "1) In generate_previews.sh, add automatic copying of preview images to presentation/images/advent_calendar/ subfolder (for better organization). 2) In export_stl.sh, add automatic copying of generated STL files to a root-level output_stl/advent_calendar/ folder for centralized access. 3) Update presentation.md image paths to use ./images/advent_calendar/ prefix. 4) Document this automatic update feature in notes.md so users know the scripts handle file distribution automatically." This provides specific folder structure, file names, and explains the organizational benefit.
+
+</details>
+
+---

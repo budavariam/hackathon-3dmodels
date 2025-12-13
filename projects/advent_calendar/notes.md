@@ -49,6 +49,13 @@ This convenience script generates previews for:
 - All doors (batch print layout)
 - Sample individual doors (1, 7, 18, 24)
 
+**Automatic updates:**
+- Preview images are saved to `./previews/` directory
+- Presentation images in `../../presentation/images/advent_calendar/` are automatically updated with the latest "all" views
+- No manual copying needed - the script handles everything!
+
+Similarly, `export_stl.sh` automatically copies STL files to `../../output_stl/advent_calendar/` for centralized access.
+
 **Manual method** - Generate specific views:
 
 ```bash

@@ -49,3 +49,17 @@ echo "  - front.png            (Front orthographic view)"
 echo "  - left.png             (Left orthographic view)"
 echo "  - wireframe.png        (Edges only, no surfaces)"
 echo "  - blueprint.png        (Technical blueprint style)"
+echo ""
+
+# Update presentation images with latest previews
+PRESENTATION_DIR="$SCRIPT_DIR/../../presentation/images/advent_calendar"
+echo "==> Updating presentation images..."
+mkdir -p "$PRESENTATION_DIR"
+
+# Copy only the case_all images that exist in output directory
+for img in "$OUTPUT_DIR"/case_all_*.png; do
+    [ -f "$img" ] && cp "$img" "$PRESENTATION_DIR/"
+done
+
+echo "✓ Presentation images updated in: $PRESENTATION_DIR/"
+echo ""
