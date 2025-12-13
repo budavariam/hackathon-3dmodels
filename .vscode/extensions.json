@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "leathong.openscad-language-support"
+        "leathong.openscad-language-support",
+        "mtsmfm.vscode-stl-viewer"
     ]
 }

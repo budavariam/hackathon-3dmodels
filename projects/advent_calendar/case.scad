@@ -95,12 +95,16 @@ if (render_part == "all") {
                 calendar_door(day, w, h);
     }
 } else {
-    // Render individual door
+    // Render individual door (rotated to lie flat for printing)
     door_num = parse_door_number(render_part);
     if (door_num > 0 && door_num <= 24) {
         w = cell_width - 2*door_clearance;
         h = cell_height - 2*door_clearance;
-        calendar_door(door_num, w, h);
+
+        // Rotate door to lie flat on print bed with numbers facing up
+        translate([0, h, 0])
+            rotate([-90, 0, 0])
+                calendar_door(door_num, w, h);
     }
 }
 
