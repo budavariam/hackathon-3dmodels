@@ -235,21 +235,38 @@ See `lib/README.md` for detailed documentation of available reusable modules:
 **IMPORTANT: After each conversation, audit all user prompts and save them to `prompts/claude.md`**
 
 Format requirements:
-1. **User prompts**: Start line with `>` symbol, add blank line after
-2. **Improvement suggestions**: Start line with `?` symbol, add blank line after
-3. **Content**: Save prompts without answers or long code blocks
-4. **Purpose**: Track prompt engineering learning process
+1. **User prompts**: Start line with `>` symbol
+2. **Improvement suggestions**: Use collapsible `<details>` section with 💡 icon
+3. **Separators**: Add horizontal rule `---` after each entry
+4. **Content**: Save prompts without answers or long code blocks
+5. **Purpose**: Track prompt engineering learning process
 
 Example format:
-```
+```markdown
 > user prompt text here
 
-? Suggestion on how to improve this prompt for better results
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Suggestion on how to improve this prompt for better results. Include specific technical details, exact file paths, line numbers, and clear explanations of what was wrong and how to fix it.
+
+</details>
+
+---
 
 > next user prompt
 
-? Next improvement suggestion
+<details>
+<summary>💡 How to improve this prompt</summary>
+
+Next improvement suggestion with concrete examples and specifications.
+
+</details>
+
+---
 ```
+
+The collapsible sections make the file more readable and the horizontal rules provide clear visual separation between entries.
 
 ## Maintenance
 
