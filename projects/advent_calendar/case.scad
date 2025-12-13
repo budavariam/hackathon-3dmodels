@@ -10,6 +10,7 @@ box_width = 410;
 box_height = 510;  // Vertical (taller)
 box_depth = 60;
 wall_thickness = 3;
+corner_radius = 5;  // Rounded edges
 
 // Door parameters
 door_thickness = 2;
@@ -144,16 +145,16 @@ function parse_door_number(str) =
  */
 module calendar_box() {
     difference() {
-        // Outer box
-        cube([box_width, box_depth, box_height]);
+        // Outer box with rounded edges
+        rounded_cube([box_width, box_depth, box_height], corner_radius);
 
         // Hollow interior
         translate([wall_thickness, wall_thickness, wall_thickness])
-            cube([
+            rounded_cube([
                 box_width - 2*wall_thickness,
                 box_depth - wall_thickness,
                 box_height - 2*wall_thickness
-            ]);
+            ], max(0, corner_radius - wall_thickness));
 
         // Door openings with hinge slots (uniform grid)
         for (row = [0:rows-1]) {
