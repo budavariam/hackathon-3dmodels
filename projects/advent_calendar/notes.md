@@ -36,7 +36,20 @@ This generates:
 
 ### Generate Preview Images
 
-From the project directory, run:
+**Quick method** - Generate all preview variations at once:
+
+```bash
+cd projects/advent_calendar
+bash generate_previews.sh
+```
+
+This convenience script generates previews for:
+- Complete calendar (all doors closed)
+- Box only
+- All doors (batch print layout)
+- Sample individual doors (1, 7, 18, 24)
+
+**Manual method** - Generate specific views:
 
 ```bash
 # Generate all standard views (perspective, top, front, left, wireframe, blueprint)
