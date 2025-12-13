@@ -40,6 +40,27 @@ openscad -o output/part_name.stl -D 'render_part="box"' model_file.scad
 
 Replace `render_part` value with the desired part name (e.g., "box", "lid", "both").
 
+### Build Verification
+
+**CRITICAL: Always verify that models build successfully after creation or modification**
+
+When you finish creating or modifying a model:
+
+1. Navigate to the model directory
+2. Run the export script
+3. Check for build errors in the output
+4. Verify that STL files are generated in the `output/` directory
+
+Example workflow:
+```bash
+cd src/002_reusable_shapes
+bash export.sh
+```
+
+Expected output should show successful exports without errors. If OpenSCAD reports syntax errors, parsing errors, or warnings, fix them before considering the task complete.
+
+**This step is mandatory** - Do not consider a model "done" until you have successfully run the export script and verified the build.
+
 ## Project Structure
 
 - `src/` - Contains model directories, the fodler name starts with an increasing 3zero padded number id and a short name.
@@ -77,14 +98,49 @@ Models follow a parametric design approach:
 
 Model folders use 3-zero padded numbered prefixes (e.g., `001_box_with_lid/`, `export.sh`) to maintain ordering and track development sequence
 
-## Audit
+### Module Organization
 
-IMPORTANT: Audit the prompts and save them to prompts/claude.md without the answers and long code blocks. starting the line with `>` symbol and add a newline after the prompt.
+OpenSCAD supports modular code organization:
 
-IMPORTANT: after each answer provide a suggestion on how to make a better prompt at the end of the answer. add this suggestion to `prompts/claude.md` after `?` symbol and follow ith with a newline
+- **`use <filename.scad>`** - Import only modules/functions (not top-level code)
+- **`include <filename.scad>`** - Import everything including top-level code
 
-## Updating
+Example structure:
+```
+src/002_reusable_shapes/
+  ├── icon_library.scad        # Reusable module definitions
+  └── 002_reusable_shapes.scad # Main file using: use <icon_library.scad>
+```
 
-Keep this file up to date with new requests or folder reorganizations throughout the development.
+Use relative paths for imports: `use <icon_library.scad>` when files are in the same directory.
 
-Whenever a new funtion is introduced add it to docs/CHEATSHEET.md file
+## Audit Protocol
+
+**IMPORTANT: After each conversation, audit all user prompts and save them to `prompts/claude.md`**
+
+Format requirements:
+1. **User prompts**: Start line with `>` symbol, add blank line after
+2. **Improvement suggestions**: Start line with `>?` symbol, add blank line after
+3. **Content**: Save prompts without answers or long code blocks
+4. **Purpose**: Track prompt engineering learning process
+
+Example format:
+```
+> user prompt text here
+
+? Suggestion on how to improve this prompt for better results
+
+> next user prompt
+
+? Next improvement suggestion
+```
+
+## Maintenance
+
+**Keep this file updated throughout development:**
+
+1. **New commands/workflows** - Add to Development Commands section
+2. **New patterns/conventions** - Add to OpenSCAD Model Architecture section
+3. **New functions** - Add to docs/CHEATSHEET.md file
+4. **Folder reorganizations** - Update Project Structure section
+5. **Prompt audits** - Update prompts/claude.md after each conversation
