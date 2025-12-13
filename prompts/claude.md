@@ -19,3 +19,11 @@
 > in the next id 003 please suggest me reusable components that people generally use. like box, plane etc. in real life projects.
 
 ? To improve this prompt, be more specific about the use cases: "Create a library of commonly used 3D printing components in folder 003, including parametric boxes with rounded corners, mounting plates with customizable hole patterns, PCB standoffs, snap-fit joints, living hinges, cable management clips, ventilation grids, and wall mount brackets. Include JSDoc-style documentation for each component and demonstrate their usage in a sample file." This provides clearer guidance on what components to include and their expected features.
+
+> by another model I was suggested another folder structutre. please rename src folder to playground in the references as well like cluaude.md and please adhere to the following structure now that I'm getting closer to the final result. please make sure to add a section on how to create image previews, add it to the instructions and previous playground experiments as well. make sure to export with a wireframe view if possible and mechanical blueprint version from top,left,front.
+
+? To improve this prompt, provide the folder structure inline or as a clear specification, specify which files need updating (CLAUDE.md, README.md, etc.), and clearly state the preview generation requirements: "Create a bash script in scripts/ that generates 6 PNG views (perspective, top, front, left, wireframe, blueprint) using OpenSCAD's --imgsize, --camera, --projection, and --view options. Update CLAUDE.md to document this script with examples. Generate previews for all existing projects."
+
+> please add the missing prompts to prompts/claude.md file with the required additional info
+
+? To improve this prompt, be more specific: "Audit all user prompts from this conversation session and add them to prompts/claude.md following the established format (> for prompts, ? for improvement suggestions, blank lines after each). Include prompts about CHEATSHEET cleanup, repository restructuring, and preview generation." This clarifies exactly which prompts should be added and in what format.

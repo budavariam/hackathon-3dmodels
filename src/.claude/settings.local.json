@@ -1,11 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cat:*)",
-      "Bash(find:*)",
-      "Bash(mkdir:*)",
-      "Bash(chmod:*)",
-      "Bash(bash export.sh:*)"
+      "Bash(bash /Users/budavariam/project/personal/hackathon-3dmodels/scripts/generate_previews.sh:*)"
     ],
     "deny": [],
     "ask": []

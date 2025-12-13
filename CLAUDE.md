@@ -7,38 +7,100 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This repo is part of a hackathon series to learn prompt engineering.
 My tool of choice is Claude Code.
 
-I aim to create 3d models programmatically with prompt engineering.
+I aim to create 3D models programmatically with prompt engineering.
 
 This repository contains OpenSCAD-based 3D models designed for 3D printing. OpenSCAD is a script-based CAD system that allows programmatic generation of 3D models using a C-like syntax.
+
+## Project Structure
+
+```
+root/
+├── README.md                    # Project overview
+├── LICENSE                      # Project license
+├── CLAUDE.md                    # This file
+├── docs/                        # Documentation and cheatsheets
+│   └── CHEATSHEET.md           # OpenSCAD syntax reference
+├── scripts/                     # Automation scripts
+│   └── generate_previews.sh    # PNG preview generation (multiple angles)
+├── lib/                         # Reusable component libraries
+│   ├── boxes_and_plates.scad   # Box, plate, mounting components
+│   ├── mechanical_and_utility.scad  # Joints, cables, ventilation
+│   ├── icon_library.scad       # Decorative icons (WiFi, temp, etc.)
+│   └── README.md               # Library documentation
+├── projects/                    # Individual build projects
+│   ├── box_with_lid/           # Example: box with lid project
+│   │   ├── case.scad           # Main model file
+│   │   ├── export_stl.sh       # STL export script
+│   │   ├── previews/           # Generated preview images
+│   │   └── output/             # Generated STL files
+│   └── [other_projects]/
+├── playground/                  # Experimental work and tests
+│   ├── 002_reusable_shapes/
+│   └── 003_common_components/
+└── prompts/                     # Prompt engineering audit log
+    └── claude.md               # Conversation prompts and improvements
+```
 
 ## Development Commands
 
 ### Exporting STL Files
 
-Each model directory contains an export script to convert OpenSCAD files to STL format:
+Each project directory contains an `export_stl.sh` script:
 
 ```bash
-cd src/<model_directory>
-bash <number>_export.sh
+cd projects/<project_name>
+bash export_stl.sh
 ```
 
-Example:
-```bash
-cd src/1_box_with_lid
-bash 1_export.sh
-```
+This generates STL files in the `output/` subdirectory.
 
-This generates STL files in the `output/` subdirectory within the model folder.
+### Generating Preview Images
 
-### Manual OpenSCAD Export
-
-To export specific parts manually:
+Use the preview generation script to create PNG previews with multiple viewing angles:
 
 ```bash
-openscad -o output/part_name.stl -D 'render_part="box"' model_file.scad
+bash scripts/generate_previews.sh [OPTIONS] <scad_file>
 ```
 
-Replace `render_part` value with the desired part name (e.g., "box", "lid", "both").
+**Generated views:**
+- `perspective.png` - Default 3D perspective view
+- `top.png` - Top-down orthographic view
+- `front.png` - Front orthographic view
+- `left.png` - Left side orthographic view
+- `wireframe.png` - Wireframe view
+- `blueprint.png` - Technical blueprint style (monotone, top orthographic)
+
+**Options:**
+- `-o, --output DIR` - Output directory (default: ./previews)
+- `-s, --size WxH` - Image size (default: 1024x768)
+- `-p, --part NAME` - Render specific part (for multi-part models)
+- `-c, --colorscheme NAME` - Color scheme (default: Tomorrow)
+- `-d, --distance NUM` - Camera distance (default: 200)
+
+**Examples:**
+```bash
+# Generate all views for a model
+bash scripts/generate_previews.sh projects/box_with_lid/case.scad
+
+# Generate previews for specific part
+bash scripts/generate_previews.sh -p "lid" projects/box_with_lid/case.scad
+
+# Custom size and output directory
+bash scripts/generate_previews.sh -s 1920x1080 -o ./images model.scad
+```
+
+### Manual OpenSCAD Commands
+
+Export STL manually:
+```bash
+openscad -o output/part.stl -D 'render_part="box"' model.scad
+```
+
+Generate single PNG preview:
+```bash
+openscad -o preview.png --imgsize=1024,768 --colorscheme=Tomorrow \
+         --autocenter --viewall model.scad
+```
 
 ### Build Verification
 
@@ -46,29 +108,22 @@ Replace `render_part` value with the desired part name (e.g., "box", "lid", "bot
 
 When you finish creating or modifying a model:
 
-1. Navigate to the model directory
-2. Run the export script
+1. Navigate to the project directory
+2. Run the export_stl.sh script
 3. Check for build errors in the output
 4. Verify that STL files are generated in the `output/` directory
+5. Generate preview images using `scripts/generate_previews.sh`
 
 Example workflow:
 ```bash
-cd src/002_reusable_shapes
-bash export.sh
+cd projects/box_with_lid
+bash export_stl.sh
+bash ../../scripts/generate_previews.sh case.scad
 ```
 
 Expected output should show successful exports without errors. If OpenSCAD reports syntax errors, parsing errors, or warnings, fix them before considering the task complete.
 
-**This step is mandatory** - Do not consider a model "done" until you have successfully run the export script and verified the build.
-
-## Project Structure
-
-- `src/` - Contains model directories, the fodler name starts with an increasing 3zero padded number id and a short name.
-  - `*.scad` - OpenSCAD source files defining the 3D models
-  - `export.sh` - Shell scripts to export models to STL format
-  - `output/` - Generated STL files (created by export scripts)
-- `prompts/` - Development notes and AI prompts used during model creation
-- `docs/` - Documentation files, cheatsheets
+**This step is mandatory** - Do not consider a model "done" until you have successfully run the export script, verified the build, and generated preview images.
 
 ## OpenSCAD Model Architecture
 
@@ -89,30 +144,43 @@ Models follow a parametric design approach:
 ### Model Design Conventions
 
 - Wall thicknesses typically 2mm for structural integrity
-- Include clearances (0.2mm) between fitting parts
-- Screw holes are designed with appropriate diameters for M3 screws
-- Ventilation slots are rectangular cutouts for airflow
+- Include clearances (0.2mm) for friction fit, 0.3-0.5mm for loose fit
+- Screw holes are designed with appropriate diameters for M3 screws (3.2mm)
+- Ventilation slots are rectangular or hexagonal cutouts for airflow
 - Corner posts use cylinders with threaded holes for assembly
-
-## File Naming Convention
-
-Model folders use 3-zero padded numbered prefixes (e.g., `001_box_with_lid/`, `export.sh`) to maintain ordering and track development sequence
 
 ### Module Organization
 
 OpenSCAD supports modular code organization:
 
-- **`use <filename.scad>`** - Import only modules/functions (not top-level code)
+- **`use <filename.scad>`** - Import only modules/functions (not top-level code) - recommended
 - **`include <filename.scad>`** - Import everything including top-level code
 
-Example structure:
-```
-src/002_reusable_shapes/
-  ├── icon_library.scad        # Reusable module definitions
-  └── 002_reusable_shapes.scad # Main file using: use <icon_library.scad>
+Example usage:
+```openscad
+use <../lib/boxes_and_plates.scad>
+use <../lib/mechanical_and_utility.scad>
+
+parametric_box(width=100, depth=80, height=40, wall_thickness=2);
 ```
 
-Use relative paths for imports: `use <icon_library.scad>` when files are in the same directory.
+Use relative paths for imports. From projects:  `../lib/module.scad`. From playground: `../../lib/module.scad`.
+
+## Component Library
+
+See `lib/README.md` for detailed documentation of available reusable modules:
+
+**Boxes & Mounting:**
+- `parametric_box()`, `mounting_plate()`, `screw_post()`, `pcb_standoff()`
+
+**Mechanical Joints:**
+- `snapfit_male()`, `snapfit_female()`, `living_hinge()`
+
+**Cable Management:**
+- `cable_clip()`, `cable_guide()`, `ventilation_grid()`
+
+**Decorative:**
+- `wifi_icon()`, `temperature_icon()`
 
 ## Audit Protocol
 
@@ -120,7 +188,7 @@ Use relative paths for imports: `use <icon_library.scad>` when files are in the 
 
 Format requirements:
 1. **User prompts**: Start line with `>` symbol, add blank line after
-2. **Improvement suggestions**: Start line with `>?` symbol, add blank line after
+2. **Improvement suggestions**: Start line with `?` symbol, add blank line after
 3. **Content**: Save prompts without answers or long code blocks
 4. **Purpose**: Track prompt engineering learning process
 
@@ -141,6 +209,7 @@ Example format:
 
 1. **New commands/workflows** - Add to Development Commands section
 2. **New patterns/conventions** - Add to OpenSCAD Model Architecture section
-3. **New functions** - Add to docs/CHEATSHEET.md file
+3. **New functions** - Add to docs/CHEATSHEET.md and lib/README.md files
 4. **Folder reorganizations** - Update Project Structure section
 5. **Prompt audits** - Update prompts/claude.md after each conversation
+6. **Preview generation** - Always generate preview images for new projects
