@@ -53,7 +53,7 @@ cell_height = (box_height - 2*wall_thickness) / rows;
 // Main rendering
 if (render_part == "all") {
     // Box standing upright with all doors
-    color("SaddleBrown") calendar_box();
+    color("CornflowerBlue") calendar_box();
 
     // All doors closed in their positions
     for (row = [0:rows-1]) {
@@ -69,8 +69,7 @@ if (render_part == "all") {
             // Position doors in front of box (closed position)
             // Door aligned with opening in Z axis, with small clearance in Y
             translate([x, -(door_thickness + 1), z])
-                color("Chocolate")
-                    calendar_door(day, w, h);
+                calendar_door(day, w, h);
         }
     }
 } else if (render_part == "box") {
@@ -194,19 +193,22 @@ module calendar_box() {
  * @param height - Door height
  */
 module calendar_door(day, width, height) {
-    // Main door panel
-    cube([width, door_thickness, height]);
+    // Main door panel (blue)
+    color("CornflowerBlue")
+        cube([width, door_thickness, height]);
 
-    // Hinge cylinder (at top of door)
-    translate([width/2, door_thickness/2, height])
-        rotate([0, 90, 0])
-            cylinder(h=hinge_length/2, d=hinge_diameter - hinge_clearance*2, center=true, $fn=20);
+    // Hinge cylinder (at top of door, blue)
+    color("CornflowerBlue")
+        translate([width/2, door_thickness/2, height])
+            rotate([0, 90, 0])
+                cylinder(h=hinge_length/2, d=hinge_diameter - hinge_clearance*2, center=true, $fn=20);
 
-    // Snap catch (at bottom of door)
-    translate([width/2 - catch_size/2, door_thickness, 0])
-        cube([catch_size, catch_size, catch_size]);
+    // Snap catch (at bottom of door, blue)
+    color("CornflowerBlue")
+        translate([width/2 - catch_size/2, door_thickness, 0])
+            cube([catch_size, catch_size, catch_size]);
 
-    // EMBOSSED number on door front (raised/positive) - different color
+    // EMBOSSED number on door front (raised/positive) - gold color
     // Numbers oriented vertically (aligned with Z axis)
     translate([width/2, 0, height/2])
         color("Gold")
