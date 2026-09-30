@@ -1,4 +1,4 @@
-.PHONY: help clean optimize-pngs render-all test-previews install-deps \
+.PHONY: help clean skadis-clean optimize-pngs render-all test-previews install-deps \
         skadis-kallax \
         kallax-back-clip kallax-back-bracket \
         kallax-side-clip kallax-side-bracket \
@@ -55,7 +55,8 @@ help:
 	@echo "  render-all                      All projects in projects/"
 	@echo "  test-previews                   PNG previews for all projects"
 	@echo "  optimize-pngs [DIR=.] [DRY=1]  Compress PNGs for git"
-	@echo "  clean                           Remove all generated STL/PNG"
+	@echo "  clean                           Remove ALL generated STL/PNG"
+	@echo "  skadis-clean                    Remove only skadis-kallax output"
 	@echo "  install-deps                    Install openscad/pngquant/optipng"
 	@echo ""
 	@echo ""
@@ -290,11 +291,17 @@ test-previews:
 	@echo "Done."
 
 clean:
-	@echo "Cleaning generated files…"
+	@echo "Cleaning all generated files…"
 	@find . -type f -name "*.stl" -delete
 	@find . -type f -name "*.bak" -delete
 	@find . -type d -name "output" -exec rm -rf {} + 2>/dev/null || true
 	@echo "Done."
+
+# Remove only the skadis-kallax output (leaves other projects untouched)
+skadis-clean:
+	@echo "Cleaning skadis-kallax output…"
+	@rm -rf $(SK_OUT)
+	@echo "Done. Run a bundle target to regenerate."
 
 install-deps:
 	@if command -v brew >/dev/null 2>&1; then \
