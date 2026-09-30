@@ -83,7 +83,7 @@ define _render_segments
 	      -D "render_part=\"$${col}_$${row}\"" \
 	      -D "split_cols=$(SPLIT_COLS)" \
 	      -D "split_rows=$(SPLIT_ROWS)" \
-	      $(SCAD); \
+	      skadis_panel.scad; \
 	  done; \
 	done
 endef
@@ -91,15 +91,15 @@ endef
 # Render the two-piece snap-clip accessories into $OUT_DIR
 # $(1) = output dir
 define _render_clips
-	openscad -o "$(1)/clip_male.stl"   -D 'render_part="clip_male"'   $(SCAD); \
-	openscad -o "$(1)/clip_female.stl" -D 'render_part="clip_female"' $(SCAD)
+	openscad -o "$(1)/clip_male.stl"   -D 'render_part="clip_male"'   skadis_panel.scad; \
+	openscad -o "$(1)/clip_female.stl" -D 'render_part="clip_female"' skadis_panel.scad
 endef
 
 # Render the slide-in bracket accessories into $OUT_DIR
 # $(1) = output dir
 define _render_brackets
-	openscad -o "$(1)/holder_bottom.stl" -D 'render_part="holder_bottom"' $(SCAD); \
-	openscad -o "$(1)/holder_top.stl"    -D 'render_part="holder_top"'    $(SCAD)
+	openscad -o "$(1)/holder_bottom.stl" -D 'render_part="holder_bottom"' skadis_panel.scad; \
+	openscad -o "$(1)/holder_top.stl"    -D 'render_part="holder_top"'    skadis_panel.scad
 endef
 
 # Print the clip-combo manifest
